@@ -1,0 +1,15 @@
+# Compose file for Redirect Manager
+services:
+  redirect_manager:
+    build: . # Build the local Dockerfile
+    hostname: redirect-manager
+    container_name: redirect-manager
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - BEARER_TOKEN=TOKEN
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./routes:/home/node/app/routes
