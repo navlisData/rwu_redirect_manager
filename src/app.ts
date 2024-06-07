@@ -5,7 +5,7 @@ import * as fs from "node:fs";
 
 class App {
   public app: express.Application;
-  public static filePath : string = "bla";
+  static filePath : string = "routes/routes.json";
   public port: number = parseInt(process.env.PORT) || 3000;
 
   constructor(controllers: Array<Controller>) {
@@ -20,8 +20,8 @@ class App {
   }
 
   private initFileSystem(): void {
-  	if(!fs.existsSync("routes.json")) {
-	  fs.open("routes.json", "w", (err: Error) => {})
+  	if(!fs.existsSync(App.filePath)) {
+	  fs.open(App.filePath, "w", (err: Error) => {})
 	}
   }
 

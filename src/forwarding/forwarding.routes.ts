@@ -61,20 +61,25 @@ export async function saveEntry(request: express.Request, response: express.Resp
 
 function readAllEntries(): Promise<Record<string, string>> {
   return new Promise((resolve, reject) => {
-	fs.readFile("routes.json", "utf-8", (err, data) => {
+	fs.readFile(App.filePath, "utf-8", (err, data) => {
 
 	  if(err) {
 		return reject(err);
 	  }
 
-	  resolve(JSON.parse(data));
+	  if(data.length == 0) {
+		resolve({})
+	  } else {
+		resolve(JSON.parse(data));
+	  }
 	});
   });
 }
 
 function saveAllEntries(data : Record<string, string>): Promise<boolean> {
   return new Promise((resolve, reject) => {
-	fs.writeFile("routes.json", JSON.stringify(data), err => {
+	console.log("fp: ", App.filePath)
+	fs.writeFile(App.filePath, JSON.stringify(data), err => {
 	  if(err) {
 		return reject(err);
 	  }
