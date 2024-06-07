@@ -11,10 +11,11 @@ class ForwardingController implements Controller {
   }
 
   public initializeRoutes() {
+    this.router.delete("/entry/:slug", validate.authentication, route.deleteEntry);
+    this.router.post("/entry", validate.addEntry, route.saveEntry);
+
     this.router.get("/entries", validate.authentication, route.getEntries);
     this.router.get("/:slug", validate.slug, route.redirect);
-    this.router.delete("/entry/:slug", validate.authentication, route.deleteEntry);
-    this.router.post("/entry/", validate.authentication, route.saveEntry);
   }
 }
 

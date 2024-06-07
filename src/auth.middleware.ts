@@ -32,3 +32,24 @@ export function authentication(req: Request, res: Response, next: NextFunction):
 	}
   }
 }
+
+const addEntrySchema = Joi.object({
+  slug: Joi.string().optional(),
+  url: Joi.string().required(),
+})
+
+export function addEntry(req: Request, res: Response, next: NextFunction):void {
+  const { error, value } = authScheme.validate(req.headers);
+
+  if (error) {
+	res.status(400).send(error.details[0].message);
+  } else {
+	const { error } = addEntrySchema.validate(req.body);
+	if (error) {
+	  res.status(400).send(error.details[0].message);
+	} else {
+	  next();
+	}
+  }
+
+}
