@@ -5,6 +5,7 @@ import * as fs from "node:fs";
 
 class App {
   public app: express.Application;
+  public static filePath : string = "bla";
   public port: number = parseInt(process.env.PORT) || 3000;
 
   constructor(controllers: Array<Controller>) {

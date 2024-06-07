@@ -1,6 +1,7 @@
 import express from "express";
 import * as fs from "node:fs";
 import crypto from "crypto";
+import App from "../app";
 
 export async function redirect(request: express.Request, response: express.Response) {
   const slug : string = request.params.slug;
