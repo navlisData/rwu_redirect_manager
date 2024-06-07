@@ -1,7 +1,7 @@
 import {Controller} from "../Controller";
 import express, {Router} from "express";
 import * as route from "./forwarding.routes"
-import * as validate from "../auth.middleware"
+import * as validate from "./forwarding.middleware"
 
 class ForwardingController implements Controller {
   router: Router = express.Router();
@@ -11,7 +11,7 @@ class ForwardingController implements Controller {
   }
 
   public initializeRoutes() {
-    this.router.delete("/entry/:slug", validate.authentication, route.deleteEntry);
+    this.router.delete("/entry/:slug", validate.deleteEntry, route.deleteEntry);
     this.router.post("/entry", validate.addEntry, route.saveEntry);
 
     this.router.get("/entries", validate.authentication, route.getEntries);

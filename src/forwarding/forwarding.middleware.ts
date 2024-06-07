@@ -14,6 +14,8 @@ export function slug(req: Request, res: Response, next: NextFunction):void {
   }
 }
 
+//----------------------------------------------------------------
+
 const authScheme = Joi.object({
   authorization: Joi.string().required().pattern(/^Bearer [A-Za-z0-9\-_]+\.?[A-Za-z0-9\-_]*\.?[A-Za-z0-9\-_]+$/)
 }).unknown(true);
@@ -32,6 +34,8 @@ export function authentication(req: Request, res: Response, next: NextFunction):
 	}
   }
 }
+
+//----------------------------------------------------------------
 
 const addEntrySchema = Joi.object({
   slug: Joi.string().optional(),
@@ -52,6 +56,8 @@ export function addEntry(req: Request, res: Response, next: NextFunction):void {
 	}
   }
 }
+
+//----------------------------------------------------------------
 
 const deleteEntrySchema = Joi.object({
   slug: Joi.string().required(),
