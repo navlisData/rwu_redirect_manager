@@ -78,7 +78,6 @@ function readAllEntries(): Promise<Record<string, string>> {
 
 function saveAllEntries(data : Record<string, string>): Promise<boolean> {
   return new Promise((resolve, reject) => {
-	console.log("fp: ", App.filePath)
 	fs.writeFile(App.filePath, JSON.stringify(data), err => {
 	  if(err) {
 		return reject(err);
