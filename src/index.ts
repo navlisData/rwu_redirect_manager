@@ -1,3 +1,10 @@
-// import express from 'express';
+import App from "./app";
+import ForwardingController from "./forwarding/forwarding.controller"
 
-console.log("hello world!")
+const app = new App(
+  [
+	new ForwardingController(),
+  ],
+);
+
+app.listen();
