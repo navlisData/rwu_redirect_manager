@@ -51,5 +51,23 @@ export function addEntry(req: Request, res: Response, next: NextFunction):void {
 	  next();
 	}
   }
+}
 
+const deleteEntrySchema = Joi.object({
+  slug: Joi.string().required(),
+})
+
+export function deleteEntry(req: Request, res: Response, next: NextFunction):void {
+  const { error, value } = authScheme.validate(req.headers);
+
+  if (error) {
+	res.status(400).send(error.details[0].message);
+  } else {
+	const { error } = deleteEntrySchema.validate(req.params);
+	if (error) {
+	  res.status(400).send(error.details[0].message);
+	} else {
+	  next();
+	}
+  }
 }

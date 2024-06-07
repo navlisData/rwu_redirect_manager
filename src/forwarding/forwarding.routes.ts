@@ -27,8 +27,19 @@ export async function getEntries(request: express.Request, response: express.Res
   })
 }
 
-export function deleteEntry(request: express.Request, response: express.Response){
+export async function deleteEntry(request: express.Request, response: express.Response) {
+  await readAllEntries().then(data => {
+	let slug: string = request.params.slug;
 
+	if(data[slug]) {
+	  delete data[slug];
+	  saveAllEntries(data);
+	} else {
+	  response.status(400).send("Slug not found");
+	}
+  }).catch(err => {
+	response.status(500).send("Ooopps something failed here :/");
+  })
 }
 
 export async function saveEntry(request: express.Request, response: express.Response) {
