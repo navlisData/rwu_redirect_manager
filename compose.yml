@@ -12,4 +12,4 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./routes:/home/node/app/routes
+      - ../routes:/home/node/app/routes
